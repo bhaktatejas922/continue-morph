@@ -9,6 +9,7 @@ import { GeminiApi } from "./apis/Gemini.js";
 import { JinaApi } from "./apis/Jina.js";
 import { MockApi } from "./apis/Mock.js";
 import { MoonshotApi } from "./apis/Moonshot.js";
+import { MorphApi } from "./apis/Morph.js";
 import { OpenAIApi } from "./apis/OpenAI.js";
 import { RelaceApi } from "./apis/Relace.js";
 import { LLMConfig, OpenAIConfigSchema } from "./types.js";
@@ -45,6 +46,8 @@ export function constructLlmApi(config: LLMConfig): BaseLlmApi | undefined {
       return new MoonshotApi(config);
     case "relace":
       return new RelaceApi(config);
+    case "morph":
+      return new MorphApi(config);
     case "x-ai":
       return openAICompatible("https://api.x.ai/v1/", config);
     case "voyage":
@@ -98,17 +101,18 @@ export function constructLlmApi(config: LLMConfig): BaseLlmApi | undefined {
 }
 
 export {
-  type ChatCompletion,
-  type ChatCompletionChunk,
-  type ChatCompletionCreateParams,
-  type ChatCompletionCreateParamsNonStreaming,
-  type ChatCompletionCreateParamsStreaming,
-  type Completion,
-  type CompletionCreateParams,
-  type CompletionCreateParamsNonStreaming,
-  type CompletionCreateParamsStreaming,
+    type ChatCompletion,
+    type ChatCompletionChunk,
+    type ChatCompletionCreateParams,
+    type ChatCompletionCreateParamsNonStreaming,
+    type ChatCompletionCreateParamsStreaming,
+    type Completion,
+    type CompletionCreateParams,
+    type CompletionCreateParamsNonStreaming,
+    type CompletionCreateParamsStreaming
 } from "openai/resources/index";
 
 // export
 export type { BaseLlmApi } from "./apis/base.js";
 export type { LLMConfig } from "./types.js";
+
